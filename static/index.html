@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1c1f" media="(prefers-color-scheme: dark)">
+  <title>lqmd</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app" data-state="empty">
+    <header class="header">
+      <span class="title-tile" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.2-3.2"></path>
+        </svg>
+      </span>
+      <span class="brand">
+        <span class="brand-name">lqmd</span>
+        <span class="brand-sub" id="brandSub">Search your graph</span>
+      </span>
+      <span class="header-spacer"></span>
+      <span class="status-dot" id="statusDot" title="server status" aria-label="server status"></span>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+      </button>
+    </header>
+
+    <main class="thread" id="thread">
+      <section class="hero" id="hero">
+        <h1 class="hero-title">Search your graph</h1>
+        <p class="hero-sub">Ask in your own words. Narrow with <code>#tag</code> or <code>[[page]]</code>.</p>
+        <form class="composer" id="composer">
+          <div class="modes" role="group" aria-label="Search mode">
+            <button class="mode" type="button" data-mode="hybrid" aria-pressed="true">Hybrid</button>
+            <button class="mode" type="button" data-mode="keyword" aria-pressed="false">Keyword</button>
+            <button class="mode" type="button" data-mode="vector" aria-pressed="false">Vector</button>
+          </div>
+          <div class="input-row">
+            <textarea class="input" id="input" rows="1" placeholder="Search your graph — try #tag or [[page]]…"
+                      autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+            <button class="send" id="send" type="submit" aria-label="Search" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19V5"></path>
+                <path d="m5 12 7-7 7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </section>
+      <div class="turns" id="turns"></div>
+    </main>
+
+    <footer class="footer" id="footer"></footer>
+
+    <aside class="panel" id="panel" aria-hidden="true" aria-label="Page">
+      <div class="panel-header">
+        <span class="panel-title" id="panelTitle"></span>
+        <button class="icon-btn" id="panelClose" type="button" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="panel-body" id="panelBody"></div>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+[Unit]
+Description=lqmd query server (read-only hybrid search over the Logseq graph)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=/home/unraid/Documents/lqmd-server
+Environment=PATH=/home/unraid/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=LQMD_LOGSEQ=/home/unraid/.local/bin/logseq
+Environment=LQMD_DB=/home/unraid/.cache/lqmd/index.sqlite
+Environment=LQMD_MODEL_CACHE=/home/unraid/.local/share/lqmd/models
+Environment=LQMD_GRAPH=vault
+Environment=LQMD_ROOT_DIR=/home/unraid/logseq
+Environment=LQMD_SERVER_HOST=0.0.0.0
+Environment=LQMD_SERVER_PORT=8765
+ExecStart=/home/unraid/.local/share/lqmd/venv/bin/python /home/unraid/Documents/lqmd-server/server.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
